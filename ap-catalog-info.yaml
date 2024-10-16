@@ -1,0 +1,17 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: allegroBackstagePlugins
+  description: "This repo contains Backstage plugins delivered by Allegro"
+  title: Allegro Backstage Plugins
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    allegropay/entity-updated-at: '2024-10-16T16:00'
+    github.com/project-slug: allegro/backstage-plugins
+  links: []
+spec:
+  type: library
+  owner: aard
+  lifecycle: experimental
+  system: application-platform

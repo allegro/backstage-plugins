@@ -1,0 +1,5 @@
+site_name: Allegro Backstage Pluigns docs
+
+plugins:
+  - techdocs-core
+  - include-markdown
