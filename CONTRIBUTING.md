@@ -15,12 +15,10 @@
   - add tests
 - when creating a new package, make sure to:
   - maintain the repo structure (see existing packages)
-  - add code analyzers
   - create the package's README.md
   - initialize the package's CHANGELOG.md
   - add tests
   - consider presenting usage in plugin `Readme`
-  - reference the package from README.md in repo's root
 
 ## Coding style
 

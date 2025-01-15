@@ -52,4 +52,7 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
+
+// chat bot plugin
+backend.add(import('@allegro/backstage-plugin-chat-bot-backend'));
 backend.start();

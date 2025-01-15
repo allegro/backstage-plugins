@@ -36,6 +36,7 @@ import { AppRouter, FlatRoutes } from '@backstage/core-app-api';
 import { CatalogGraphPage } from '@backstage/plugin-catalog-graph';
 import { RequirePermission } from '@backstage/plugin-permission-react';
 import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/alpha';
+import { ChatButton } from '@allegro/backstage-plugin-chat-bot';
 
 const app = createApp({
   apis,
@@ -104,6 +105,7 @@ export default app.createRoot(
     <OAuthRequestDialog />
     <AppRouter>
       <Root>{routes}</Root>
+      <ChatButton />
     </AppRouter>
   </>,
 );

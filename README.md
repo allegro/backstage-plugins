@@ -11,6 +11,14 @@ yarn install
 yarn dev
 ```
 
+## Add new package
+
+We want to keep each package in dedicated folder under `./plugins`. Additionaly we based scripts on `backstage-cli` that creates plugins directly in `./plugins`. Therefore steps to create new package are:
+
+1. type `yarn new` and follow wizard
+2. move newly created plugin to dedicated plugin folder (existing or create new one)
+3. TODO
+
 ## License
 
 Copyright Allegro Group

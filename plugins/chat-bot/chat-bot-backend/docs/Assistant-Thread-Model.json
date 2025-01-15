@@ -1,0 +1,495 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "Allegro Pay Backstage Assitant",
+    "owner": "Paweł Piwowarczyk",
+    "description": "Analyze questions people ask to grab relevant key-words used to search the Technical Documentation index with search API delivered by Backstage. The most relevant answers are then passed to the context of the model which tries to find the best answer to the question.\n\nWe want to solve problem: Huge amount of questions to Allegro Pay technical platform on help channels (at least 5-10 daily requests) that some part (approximately 50%) might be answered with Technical Documentation stored in Allegro Pay Backstage",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "adam.trepka@allegro.com"
+      },
+      {
+        "name": "pawel.piwowarczyk@allegro.com"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "DFD",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 59.99999999999841,
+              "y": 60.00000000000102
+            },
+            "size": {
+              "width": 200,
+              "height": 340
+            },
+            "shape": "trust-boundary-box",
+            "attrs": {
+              "headerText": {
+                "text": "External promp source"
+              }
+            },
+            "zIndex": -1,
+            "id": "cf7139aa-5272-4c2e-b417-67319e6132de",
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "External promp source",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 79.99999999999841,
+              "y": 200.0000000000001
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Allegro Pay associate"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 0,
+            "id": "866f245a-b4c1-4241-af03-077378438723",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Allegro Pay associate",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": [
+                {
+                  "id": "13906a66-e6d8-43aa-834c-f9f6f0aa4b67",
+                  "title": "V001: Prompt injection",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Prompt injection - System prompt modification - User can generate malicious input, that will overwrite its controls (by the jailbreak)",
+                  "mitigation": "The user's query is not sent directly to the search engine backstage. First, we detect the intent of the question and convert it into keywords, which are then passed to the search engine. We are able to precisely determine the scope of documents available to the user. This way, we protect the system from leaking sensitive content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "position": {
+              "x": 560,
+              "y": 340
+            },
+            "size": {
+              "width": 160,
+              "height": 70
+            },
+            "attrs": {
+              "text": {
+                "text": "Allegro Pay \nBackstage Index"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "zIndex": 1,
+            "id": "5c6e763e-0314-43cb-a135-185892c41229",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Allegro Pay \nBackstage Index",
+              "description": "Tech Documentation, wiki, announcements and q&a available in Allegro Pay Backtage",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 971,
+              "y": 109.99999999999974
+            },
+            "size": {
+              "width": 100,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "LLM Agent"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "5331cea8-ae8d-4055-b2fb-e4fd9e1bcfb2",
+            "data": {
+              "type": "tm.Process",
+              "name": "LLM Agent",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "5b81bb2c-5301-4f76-8b2b-324ed3b427f3",
+                  "title": "V003 User sensitive information disclosure to model vendor",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "V005: Attack on vendor infrastructure resulting in model backdoor.",
+                  "mitigation": "The assistant does not have defined functions that it could execute \"autonomously.\" The responses are based solely on pre-selected documents indexed in the Backstage system.\n\nThe assistant in the Backstage system is only accessible to users with the appropriate role/permissions. Access via Slack is limited to a strictly defined group of channels. It is not possible to contact the bot through a private message or add it to a channel without consulting the team responsible for the development and maintenance of the assistant.\n\nAccess to the assistant's API is secured with a bearer token, preventing this type of attack from being automated. \n\nThe assistant uses models available within Azure OpenAI Services. We are able to specify a particular version of the model. We do not use the \"latest\" or \"preview\" versions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "a382790a-7372-4bc4-93db-915f5c8eb702",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "V006: LLM is unable to filter sensitive information (vendors researches in progress)",
+                  "mitigation": "The Backstage system, which serves as the data source for the assistant, does not contain confidential information that Allegro Pay employees should not access.\n\nThe assistant does not have defined functions that it could execute \"autonomously.\" The responses are based solely on pre-selected documents indexed in the Backstage system.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Internal API call to search",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "65307c7c-36c8-4f72-abc6-4dde219bb876",
+            "labels": ["Internal API call to search"],
+            "source": {
+              "cell": "4a4215ad-9597-4990-b7ca-9f8b44a347e4"
+            },
+            "target": {
+              "cell": "5c6e763e-0314-43cb-a135-185892c41229"
+            },
+            "vertices": [
+              {
+                "x": 710,
+                "y": 320
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Internal API calls",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "5345b8f8-d082-447e-972c-bd0fe9f23b56",
+            "labels": ["Internal API calls"],
+            "source": {
+              "cell": "4a4215ad-9597-4990-b7ca-9f8b44a347e4"
+            },
+            "target": {
+              "cell": "5331cea8-ae8d-4055-b2fb-e4fd9e1bcfb2"
+            },
+            "vertices": [
+              {
+                "x": 720,
+                "y": 180
+              },
+              {
+                "x": 830,
+                "y": 150
+              },
+              {
+                "x": 890,
+                "y": 110
+              },
+              {
+                "x": 940,
+                "y": 110
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "ITB1",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "66e0bc0f-82e6-445c-9d62-880b07a494a4",
+            "labels": ["ITB1"],
+            "source": {
+              "x": 780,
+              "y": 20
+            },
+            "target": {
+              "x": 920,
+              "y": 370
+            },
+            "vertices": [
+              {
+                "x": 780,
+                "y": 100
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "ETB",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "3ac99a7d-acfc-4597-850e-3c25e9bd0f2e",
+            "labels": ["ETB"],
+            "source": {
+              "x": 410,
+              "y": 80
+            },
+            "target": {
+              "x": 410,
+              "y": 400
+            },
+            "vertices": []
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Prompt and Response\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": true,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "9b3c9d18-02a7-4612-ab04-d2365074d871",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "V002: Modification of model parameters (temperature, p, model version) \n\n",
+                  "mitigation": "The user's query is not sent directly to the search engine backstage. First, we detect the intent of the question and convert it into keywords, which are then passed to the search engine. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "3be974ab-502a-4a46-a9ba-9c94f1618170",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "V003: User sensitive information disclosure to model vendor (user behavior - data in prompt)",
+                  "mitigation": "The user's query is not sent directly to the search engine backstage. First, we detect the intent of the question and convert it into keywords, which are then passed to the search engine. ",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "86dff884-6bbf-49a9-b016-aad72f18677b",
+            "labels": ["Prompt and Response\n"],
+            "source": {
+              "x": 260,
+              "y": 239
+            },
+            "target": {
+              "x": 560,
+              "y": 240
+            },
+            "vertices": [
+              {
+                "x": 420,
+                "y": 300
+              },
+              {
+                "x": 530,
+                "y": 260
+              }
+            ]
+          },
+          {
+            "position": {
+              "x": 570,
+              "y": 195.0000000000001
+            },
+            "size": {
+              "width": 80,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Server \nside \nprocessing"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 11,
+            "id": "4a4215ad-9597-4990-b7ca-9f8b44a347e4",
+            "data": {
+              "type": "tm.Process",
+              "name": "Server \nside \nprocessing",
+              "description": "Lang Chain and other processing of the input",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": [
+                {
+                  "id": "343c08ba-883a-4901-b1f6-69a4e825ee02",
+                  "title": "New STRIDE threat",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "V004: Lack of rate limiting can overflow the budget resulting in DoS from insufficient funding. ",
+                  "mitigation": "Access to the assistant's API is secured with a bearer token, preventing this type of attack from being automated. We have not implemented other security methods such as rate limiting.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ]
+            }
+          }
+        ],
+        "description": "DFD for Backstage Assitance"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "",
+    "threatTop": 12
+  }
+}
