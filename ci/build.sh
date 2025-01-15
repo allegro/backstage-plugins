@@ -1,0 +1,1 @@
+yarn husky init
