@@ -8,7 +8,7 @@ import Popover from '@mui/material/Popover';
 import { makeStyles, Theme } from '@material-ui/core';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { ChatIcon, MarkdownContent } from '@backstage/core-components';
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from '@material-ui/icons/Send';
 import { chatApiRef, HistoryItem, HistoryItemSource } from '../../alpha/apis';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';

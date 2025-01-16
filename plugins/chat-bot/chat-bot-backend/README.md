@@ -24,10 +24,11 @@ Modify you configuration file, for example:
 # In app-config.yaml
 
 chatBot:
-      key: AzureOpenAIAccessKey # Access key to yout instance of Azure OpenAI Services
-      endpoint: AzureOpenAIEndpoint # Endpoint of your instance of Azure OpenAI Services
+  key: AzureOpenAIAccessKey # Access key to yout instance of Azure OpenAI Services
+  endpoint: AzureOpenAIEndpoint # Endpoint of your instance of Azure OpenAI Services
 ```
 
 TODO:
+
 - describe other configs
 - model defaults

@@ -1,5 +1,14 @@
 # Allegro Backstage Plugins
 
+## Getting started
+
+Setup local environement:
+
+```sh
+yarn install
+yarn husky init
+```
+
 ## [Backstage](https://backstage.io)
 
 This is your newly scaffolded Backstage App, Good Luck!

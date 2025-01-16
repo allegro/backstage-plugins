@@ -6,5 +6,5 @@ export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
-/bin/bash "$parent_path/test.sh"
-yarn build:backend --config ../../app-config.yaml --config ../../app-config.local.yaml
+/bin/bash "$parent_path/lint.sh"
+yarn test:all

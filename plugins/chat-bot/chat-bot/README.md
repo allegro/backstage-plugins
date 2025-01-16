@@ -15,23 +15,21 @@ Modify your app routes to include the ChatButton component, for example:
 import { ChatButton } from '@internal/backstage-plugin-chat-bot';
 
 export default app.createRoot(
-      <>
-            <AlertDisplay />
-            <OAuthRequestDialog />
-            <AppRouter>
-                  <Root>{routes}</Root>
-                  <RequirePermission
-                        permission={/* Permissions required to use assistant */}
-                        errorPage={<></>}
-                  >
-                        <ChatButton />
-                  </RequirePermission>
-            </AppRouter>
-      </>,
+  <>
+    <AlertDisplay />
+    <OAuthRequestDialog />
+    <AppRouter>
+      <Root>{routes}</Root>
+      <RequirePermission
+        permission={/* Permissions required to use assistant */}
+        errorPage={<></>}
+      >
+        <ChatButton />
+      </RequirePermission>
+    </AppRouter>
+  </>,
 );
 ```
-
-
 
 ## How assistant works
 
