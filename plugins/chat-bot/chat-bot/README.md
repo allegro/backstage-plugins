@@ -4,11 +4,22 @@
 
 This Spotify Backstage plugin integrates an AI-powered assistant using [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/ai-services/openai-service) and the [Backstage search engine](https://github.com/backstage/backstage/tree/master/plugins/search) to provide smart, contextual responses to your questions. The assistant can automate routine tasks, offer intelligent suggestions, and help you quickly find relevant information within your Backstage environment. Designed to enhance productivity, it seamlessly integrates into your workflow, making it easier to manage and interact with Spotify services.
 
-## Configuration
+## Install
 
-TODO: add package
+### Up and running
 
-Modify your app routes to include the ChatButton component, for example:
+Steps to execute:
+
+1. First we need to add the `@allegro/backstage-plugin-chat-bot` package to your backend:
+
+```sh
+ # From your Backstage root directory
+ yarn --cwd packages/app add @allegro/backstage-plugin-chat-bot
+```
+
+2. Make sure the [@allegro/backstage-plugin-chat-bot-backend](../chat-bot-backend/README.md) is installed.
+
+3. Modify your app routes to include the ChatButton component, for example:
 
 ```tsx
 // In packages/app/src/App.tsx
@@ -21,7 +32,7 @@ export default app.createRoot(
     <AppRouter>
       <Root>{routes}</Root>
       <RequirePermission
-        permission={/* Permissions required to use assistant */}
+        permission={/* Permissions required to use assistant, if any */}
         errorPage={<></>}
       >
         <ChatButton />
@@ -31,28 +42,11 @@ export default app.createRoot(
 );
 ```
 
-## How assistant works
+## Working with source code
 
-#### 1. User Interaction:
+Your plugin has been added to the example app in this repository, meaning you'll be able to access it by running `yarn
+start` in the root directory, and then navigate to [home](http://localhost:3000).
 
-The user begins by asking a question within the Backstage interface.
-
-#### 2. Multi-Query Retrieval:
-
-The assistant modifies the user's original question into multiple query variations using a multi-query retriever mechanism. This helps to capture different ways the question could be interpreted.
-
-#### 3. Search Execution:
-
-Each generated query is passed to the Backstage search engine, which retrieves the top 3 relevant results for each query.
-
-#### 4. Document Filtering:
-
-The results are processed using an [embeddings](https://platform.openai.com/docs/guides/embeddings) model. By applying [cosine similarity](https://en.wikipedia.org/wiki/Cosine_similarity), the assistant identifies which documents most likely contain the answer to the user's question.
-
-#### 5. Context Building:
-
-The selected documents are passed to the AI model as context to provide relevant information for the answer generation.
-
-#### 6. Answer Generation:
-
-Using the provided context, the AI assistant generates a precise and informative response for the user.
+You can also serve the plugin in isolation by running `yarn start` in the plugin directory.
+This method of serving the plugin provides quicker iteration speed and a faster startup and hot reloads.
+It is only meant for local development, and the setup for it can be found inside the [/dev](./dev) directory.

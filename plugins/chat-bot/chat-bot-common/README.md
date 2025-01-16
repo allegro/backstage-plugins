@@ -1,4 +1,4 @@
-# @internal/backstage-plugin-chat-bot-common
+# ChatBot Common
 
 Welcome to the common package for the chat-bot plugin!
 

@@ -6,7 +6,7 @@
 - if issue exists, reference it from PR title or description using GitHub magic words like _resolves #issue-number_
 - before making significant changes, please contact us via issues to discuss your plans and decrease number of changes after Pull Request is created
 - create pull requests to **main** branch
-- recommended to use conventional commits standard
+- required to use conventional commits standard
 - when updating a package, make sure to:
   - update its README.md
   - update its CHANGELOG.md
