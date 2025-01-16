@@ -34,7 +34,7 @@ export const chatBotPlugin = createBackendPlugin({
           allow: 'unauthenticated',
         });
 
-        if (config.get('auth.environment') === 'development') {
+        if (config.getOptional('auth.environment') === 'development') {
           httpRouter.addAuthPolicy({
             path: '/prompt',
             allow: 'unauthenticated',

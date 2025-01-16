@@ -38,9 +38,9 @@ export interface RouterOptions {
 export interface ChatBotConfiguration {
   key: string;
   endpoint: string;
-  chatCompletionPrimaryModel: string;
-  chatCompletionSecondaryModel: string;
-  embeddingModel: string;
+  chatCompletionPrimaryModel: string | undefined;
+  chatCompletionSecondaryModel: string | undefined;
+  embeddingModel: string | undefined;
   slackChannels: string[];
 }
 // TODO: slack
@@ -112,7 +112,7 @@ export async function createRouter(
           },
         });
         const allowedOrgs = config.getStringArray(
-          'copilot.github.allowedOrganizations',
+          'chatBot.copilot.github.allowedOrganizations',
         );
         const isAllegroMember = orgs.some((org: { login: string }) =>
           allowedOrgs.includes(org.login),

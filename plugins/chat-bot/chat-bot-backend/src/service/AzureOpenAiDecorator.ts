@@ -19,9 +19,9 @@ export class AzureOpenAiDecorator {
     logger: LoggerService,
     endpoint: string,
     key: string,
-    chatCompletionPrimaryModel: string,
-    chatCompletionSecondaryModel: string,
-    embeddingsModel: string,
+    chatCompletionPrimaryModel: string | undefined,
+    chatCompletionSecondaryModel: string | undefined,
+    embeddingsModel: string | undefined,
   ) {
     this.client = new AzureOpenAI({
       apiKey: key,
@@ -30,9 +30,10 @@ export class AzureOpenAiDecorator {
     });
 
     this.logger = logger;
-    this.chatCompletionPrimaryModel = chatCompletionPrimaryModel;
-    this.chatCompletionSecondaryModel = chatCompletionSecondaryModel;
-    this.embeddingsModel = embeddingsModel;
+    this.chatCompletionPrimaryModel = chatCompletionPrimaryModel || 'gpt-4o';
+    this.chatCompletionSecondaryModel =
+      chatCompletionSecondaryModel || 'gpt-4o-mini';
+    this.embeddingsModel = embeddingsModel || 'text-embedding-ada-002-d1';
   }
 
   primaryModelChatCompletion(

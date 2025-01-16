@@ -118,4 +118,9 @@ chatBot:
   chatCompletionPrimaryModel: gpt-4o
   chatCompletionSecondaryModel: gpt-4o-mini
   embeddingModel: text-embedding-ada-002-d1
-  slackChannels: [Backstage__ChatBot__Slack__Channel]
+  slackChannels:
+    - C000000000
+  copilot:
+    github:
+      allowedOrganizations:
+        - ${Backstage__ChatBot__Copilot__Allowed__Organization}
