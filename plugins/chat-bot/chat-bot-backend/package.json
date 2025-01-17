@@ -1,0 +1,63 @@
+{
+  "name": "@allegro/backstage-plugin-chat-bot-backend",
+  "version": "0.1.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "license": "Apache-2.0",
+  "description": "Backstage ChatBot back end plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allegro/backstage-plugins",
+    "directory": "plugins/chat-bot/chat-bot-backend"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.cjs.js",
+    "types": "dist/index.d.ts"
+  },
+  "backstage": {
+    "role": "backend-plugin",
+    "pluginId": "chat-bot",
+    "pluginPackages": [
+      "@allegro/backstage-plugin-chat-bot",
+      "@allegro/backstage-plugin-chat-bot-backend",
+      "@allegro/backstage-plugin-chat-bot-common"
+    ]
+  },
+  "scripts": {
+    "start": "backstage-cli package start",
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack"
+  },
+  "dependencies": {
+    "@allegro/backstage-plugin-chat-bot-common": "^0.1.0",
+    "@backstage/backend-defaults": "^0.7.0",
+    "@backstage/backend-plugin-api": "^1.1.1",
+    "@octokit/rest": "18.12.0",
+    "express": "^4.17.1",
+    "express-promise-router": "^4.1.0",
+    "node-fetch": "^2.6.7",
+    "openai": "^4.77.4",
+    "prom-client": "^14.2.0",
+    "uuid": "^11.0.4"
+  },
+  "devDependencies": {
+    "@backstage/backend-test-utils": "^1.2.1",
+    "@backstage/cli": "^0.29.5",
+    "@backstage/plugin-auth-backend": "^0.24.2",
+    "@backstage/plugin-auth-backend-module-guest-provider": "^0.2.4",
+    "@types/express": "^4.17.6",
+    "@types/supertest": "^2.0.12",
+    "msw": "^2.3.1",
+    "supertest": "^6.2.4"
+  },
+  "files": [
+    "dist",
+    "config.d.ts"
+  ],
+  "configSchema": "config.d.ts"
+}

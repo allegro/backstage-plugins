@@ -1,0 +1,64 @@
+### Bot prompt
+POST http://localhost:7007/api/chat-bot/prompt
+Content-Type: application/json
+
+{
+    "content": "Why we use Backstage as techincal platform?"
+}
+
+### Bot slack web hook event
+POST http://localhost:7007/api/chat-bot/slack/event
+Content-Type: application/json
+
+{
+  "token": "token",
+  "team_id": "T00000000",
+  "api_app_id": "A000000000",
+  "event": {
+    "user": "U00000000",
+    "type": "app_mention",
+    "ts": "1730186477.797779",
+    "client_msg_id": "e1cfc69e-7d15-4e5b-98dc-bb808e5e1f49",
+    "text": "<@U00000000> I ran the k8s optimizer across all of our Allegro microservices, and each one is under-allocated. When should we add pods, and when should we scale vertically? Is there a specific strategy? The optimizer only considers CPU and memory—so what’s the heuristic for deciding when to add pods? If it suggests 2x, do we just add another pod?",
+    "team": "T00000000",
+    "thread_ts": "1730128480.851819",
+    "parent_user_id": "U00000000",
+    "blocks": [
+      {
+        "type": "rich_text",
+        "block_id": "FTzco",
+        "elements": [
+          {
+            "type": "rich_text_section",
+            "elements": [
+              {
+                "type": "user",
+                "user_id": "U00000000"
+              },
+              {
+                "type": "text",
+                "text": " I ran the k8s optimizer across all of our Allegro microservices, and each one is under-allocated. When should we add pods, and when should we scale vertically? Is there a specific strategy? The optimizer only considers CPU and memory—so what’s the heuristic for deciding when to add pods? If it suggests 2x, do we just add another pod?"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "channel": "C000000000",
+    "event_ts": "1730186477.797779"
+  },
+  "type": "event_callback",
+  "event_id": "Ev07UL0WPABS",
+  "event_time": 1730186477,
+  "authorizations": [
+    {
+      "enterprise_id": null,
+      "team_id": "T00000000",
+      "user_id": "U000000000",
+      "is_bot": true,
+      "is_enterprise_install": false
+    }
+  ],
+  "is_ext_shared_channel": false,
+  "event_context": "4-eyJldCI6ImFwcF9tZW50aW9uIiwidGlkIjoiVDAyNkU1MTJSIiwiYWlkIjoiQTA3UkpGRUo4SkoiLCJjaWQiOiJDMDdTOVVaOVNCQyJ9"
+}

@@ -1,6 +1,32 @@
 # Allegro Backstage Plugins
 
-TODO 
+## Getting started
+
+Setup local environement:
+
+```sh
+yarn install
+yarn husky init
+```
+
+## [Backstage](https://backstage.io)
+
+This is your newly scaffolded Backstage App, Good Luck!
+
+To start the app, run:
+
+```sh
+yarn install
+yarn dev
+```
+
+## Add new package
+
+We want to keep each package in dedicated folder under `./plugins`. Additionaly we based scripts on `backstage-cli` that creates plugins directly in `./plugins`. Therefore steps to create new package are:
+
+1. type `yarn new` and follow wizard
+2. move newly created plugin to dedicated plugin folder (existing or create new one)
+3. TODO
 
 ## License
 
