@@ -7,4 +7,4 @@ export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 yarn install --immutable
 yarn tsc 
 yarn test:all
-yarn build:backend --config ../../app-config.yaml
+yarn build:all
